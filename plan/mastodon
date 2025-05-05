@@ -1,0 +1,14 @@
+#!/bin/bash -e
+
+# Dependências principais
+DEPENDS="
+turnkey-postgresql
+turnkey-redis
+turnkey-rails
+turnkey-nodejs
+turnkey-nginx
+"
+
+# Configurações específicas do Mastodon
+cp -r conf/ $PLAN_TMP/
+cp -r overlay/ $PLAN_TMP/
