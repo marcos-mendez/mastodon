@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Cria usuário dedicado
+useradd -m -d /opt/mastodon mastodon
+
+# Clona repositório (usar tag estável)
+git clone https://github.com/mastodon/mastodon.git /opt/mastodon
+chown -R mastodon:mastodon /opt/mastodon
+
+# Instala dependências
+cd /opt/mastodon
+sudo -u mastodon bundle install --deployment --without development test
+sudo -u mastodon yarn install --pure-lockfile
+
+# Configura .env dinamicamente
+DOMAIN=$(inithooks-get website)
+SECRETS=$(rake secret)
+echo "LOCAL_DOMAIN=$DOMAIN" >> /opt/mastodon/.env.production
+echo "SECRET_KEY_BASE=$SECRETS" >> /opt/mastodon/.env.production

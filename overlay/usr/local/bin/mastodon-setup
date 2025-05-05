@@ -1,0 +1,4 @@
+#!/bin/bash
+# Configura DB, migrações e pré-compila assets
+su - mastodon -c "cd /opt/mastodon && RAILS_ENV=production bundle exec rails db:setup"
+su - mastodon -c "cd /opt/mastodon && RAILS_ENV=production bundle exec rails assets:precompile"

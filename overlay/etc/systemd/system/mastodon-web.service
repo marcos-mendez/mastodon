@@ -1,0 +1,8 @@
+[Unit]
+Description=Mastodon Web
+After=network.target
+
+[Service]
+User=mastodon
+WorkingDirectory=/opt/mastodon
+ExecStart=/usr/bin/bundle exec puma -C config/puma.rb

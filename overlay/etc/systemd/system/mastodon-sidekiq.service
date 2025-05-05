@@ -1,0 +1,8 @@
+[Unit]
+Description=Mastodon Background Worker
+After=network.target
+
+[Service]
+User=mastodon
+WorkingDirectory=/opt/mastodon
+ExecStart=/usr/bin/bundle exec sidekiq -c 5
